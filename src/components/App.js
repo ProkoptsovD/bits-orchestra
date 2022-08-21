@@ -3,6 +3,6 @@ import SharedLayout from "../layouts/SharedLayout";
 
 export const App = () => {
   return (
-    <AddBookLayout />
+    <SharedLayout />
   );
 };

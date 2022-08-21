@@ -1,4 +1,6 @@
+import NavigateButton from "components/common/NavigateButton";
 import TextButton from "components/common/TextButton";
+import { ROUTES } from "constants";
 import styles from './BookShelfTable.module.scss';
 
 const BookShelfTable = ({
@@ -40,7 +42,10 @@ const BookShelfTable = ({
                             { ISBN }
                         </td>
                         <td className={ styles.btns }>
-                            <TextButton text="Edit" />
+                            <NavigateButton
+                                text="Edit"
+                                to={ ROUTES.EDIT_BOOK }
+                            />
                             <TextButton text="Delete" />
                         </td>
                     </tr>
