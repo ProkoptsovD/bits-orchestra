@@ -1,0 +1,10 @@
+@import '../../../styles/mixins/scrollbar.scss';
+
+$scroll-bar-width: 4px;
+
+.scroll_container {
+    height: 70vh;
+    overflow-y: scroll;
+    width: calc(100% + #{$scroll-bar-width});
+    @include scrollbar($scroll-bar-width);
+}
