@@ -1,0 +1,13 @@
+.form {
+    & > :not(:last-child) {
+        margin-bottom: 20px;
+    }
+}
+.label {
+    margin-bottom: 10px;
+}
+.add_book {
+    width: 100%;
+    padding: 10px 0;
+    background-color: var(--clr-brand-200);
+}
