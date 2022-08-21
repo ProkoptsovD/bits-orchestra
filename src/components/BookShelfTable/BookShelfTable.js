@@ -25,9 +25,9 @@ const BookShelfTable = ({
                 </tr>
             </thead>
             <tbody>
-                {books.map(({ bookId, title, author, category, ISBN }) => (
+                {books.map(({ id, title, author, category, ISBN }) => (
                     <tr
-                        key={ bookId }
+                        key={ id }
                     >
                         <td>{ title }</td>
                         <td>{ author }</td>
