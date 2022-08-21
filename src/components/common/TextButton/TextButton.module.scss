@@ -1,0 +1,20 @@
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+
+    font: inherit;
+
+    border: none;
+    border-radius: 4px;
+    background-color: var(--clr-bg-500);
+    color: var(--clr-text-100);
+
+    transition: background-color var(--tr-duration-300) var(--tr-func-400);
+
+    &:hover {
+        cursor: pointer;
+        background-color: var(--clr-brand-100);
+    }
+}

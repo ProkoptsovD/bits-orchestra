@@ -1,0 +1,37 @@
+.table {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+
+    &, & td, & th {
+        padding: 10px;
+        border: 1px solid var(--clr-border-400);
+        border-collapse: collapse;
+        background-color: var(--clr-bg-100);
+    }
+    & th {
+        background-color: var(--clr-brand-100);
+        color: var(--clr-text-200);
+    }
+    & td {
+        font-size: var(--fs-350);
+    }
+    & .cat_td, & .ibsn {
+        font-size: var(--fs-300);
+    }
+    & .ibsn {
+        font-weight: var(--fw-700);
+    }
+    .btns {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        flex-wrap: wrap;
+    }
+
+    & button {
+        width: 50px;
+        font-size: var(--fs-300);
+    }
+}
