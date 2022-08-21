@@ -1,0 +1,74 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "title": "Nausea",
+      "author": "Jean-Paul Sartre",
+      "category": [
+        "psychology",
+        "philosophy"
+      ],
+      "ISBN": 1185699467181
+    },
+    {
+      "id": 2,
+      "title": "The Magus",
+      "author": "John Fowles",
+      "category": [
+        "novel",
+        "artistic fiction"
+      ],
+      "ISBN": 3285699467181
+    },
+    {
+      "id": 3,
+      "title": "Fight Club",
+      "author": "Chuck Palahniuk",
+      "category": [
+        "satirical",
+        "novel"
+      ],
+      "ISBN": 9785699467181
+    },
+    {
+      "id": 4,
+      "title": "Haunted",
+      "author": "Chuck Palahniuk",
+      "category": [
+        "horror",
+        "satire",
+        "dark comedy"
+      ],
+      "ISBN": 5680237525546
+    },
+    {
+      "id": 5,
+      "title": "The Lord of the Rings",
+      "author": "J. R. R. Tolkien",
+      "category": [
+        "fantasy",
+        "adventure",
+        "novel"
+      ],
+      "ISBN": 5580007525546
+    },
+    {
+      "id": 6,
+      "title": "Harry Potter and the Philosopher's Stone",
+      "author": "J. K. Rowling",
+      "category": [
+        "fantasy"
+      ],
+      "ISBN": 6790007525546
+    },
+    {
+      "id": 7,
+      "title": "Gone with the Wind",
+      "author": "Margaret Mitchell",
+      "category": [
+        "historical fiction"
+      ],
+      "ISBN": 9780446365383
+    }
+  ]
+}
