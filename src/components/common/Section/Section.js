@@ -1,9 +1,11 @@
 import Container from '../Container';
+import Title from '../Title';
 import styles from './Section.module.scss';
 
 const Section = ({
     children, title, titleStyles = '',
-    containerStyles = '', sectionStyles = ''
+    containerStyles = '', sectionStyles = '',
+    component
 }) => {
     return (
         <section
@@ -13,9 +15,11 @@ const Section = ({
                 className={ containerStyles }
             >
                 {
-                    title && <h1 className={ `${styles.title} ${titleStyles}` }>
-                                {title}
-                            </h1>
+                    title && <Title
+                                text={ title }
+                                component={ component }
+                                className={ `${styles.title} ${titleStyles}` }
+                            />
                 }
                 {children}
             </Container>

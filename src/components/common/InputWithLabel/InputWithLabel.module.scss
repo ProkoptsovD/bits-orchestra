@@ -1,0 +1,26 @@
+.label {
+    display: inline-block;
+    margin-bottom: 5px;
+}
+.label.required:after {
+    content: "*";
+    margin-left: 5px;
+    font-size: 0.75em;
+    vertical-align: top;
+    color: var(--clr-required);
+}
+.input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--clr-border-400);
+    border-radius: 10px;
+
+    color: var(--clr-text-400);
+}
+.input:focus-within {
+    outline-color: var(--clr-input-focused);
+}
+.input::placeholder {
+    color: var(--clr-text-300);
+}
