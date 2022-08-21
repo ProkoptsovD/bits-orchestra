@@ -30,7 +30,8 @@
         flex-wrap: wrap;
     }
 
-    & button {
+    & td > button,
+    & td > a {
         width: 50px;
         font-size: var(--fs-300);
     }
