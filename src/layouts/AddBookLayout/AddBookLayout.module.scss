@@ -1,5 +1,27 @@
+.section {
+    position: relative;
+}
+
 .title {
     margin-bottom: 40px;
     font-weight: var(--fw-700);
     text-transform: uppercase;
+}
+.navigate_btn {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+
+    font-weight: var(--fw-700);
+
+    background-color: transparent;
+    color: var(--clr-brand-100);
+
+    transition: text-decoration var(--tr-duration-300) var(--tr-func-300);
+
+    &:hover {
+        background-color: transparent;
+        color: var(--clr-brand-200);
+        text-decoration: underline;
+    }
 }

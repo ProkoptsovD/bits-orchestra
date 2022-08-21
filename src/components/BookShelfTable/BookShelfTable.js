@@ -44,7 +44,7 @@ const BookShelfTable = ({
                         <td className={ styles.btns }>
                             <NavigateButton
                                 text="Edit"
-                                to={ ROUTES.EDIT_BOOK }
+                                to={ `/${ROUTES.EDIT_BOOK}/${id}` }
                             />
                             <TextButton text="Delete" />
                         </td>

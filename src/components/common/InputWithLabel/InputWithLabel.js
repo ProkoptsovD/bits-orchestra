@@ -6,6 +6,8 @@ const InputWithLabel = ({
     inputStyles = '',
     wrapperStyles = '',
     required,
+    value,
+    onChange,
     ...restProps
 }) => {
     // styles
@@ -24,6 +26,8 @@ const InputWithLabel = ({
             }
             <input
                 className={ inputCss }
+                value={ value }
+                onChange={ onChange }
                 required={ required }
                 { ...restProps }
             />
