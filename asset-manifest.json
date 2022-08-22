@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/static/css/main.40fe1bfe.css",
-    "main.js": "/static/js/main.e7036bf7.js",
-    "static/css/823.17fbb31e.chunk.css": "/static/css/823.17fbb31e.chunk.css",
-    "static/js/823.273bdadc.chunk.js": "/static/js/823.273bdadc.chunk.js",
-    "static/css/310.f61c21c6.chunk.css": "/static/css/310.f61c21c6.chunk.css",
-    "static/js/310.fd39d33e.chunk.js": "/static/js/310.fd39d33e.chunk.js",
-    "static/js/295.d67f6e72.chunk.js": "/static/js/295.d67f6e72.chunk.js",
-    "index.html": "/index.html",
-    "main.40fe1bfe.css.map": "/static/css/main.40fe1bfe.css.map",
-    "main.e7036bf7.js.map": "/static/js/main.e7036bf7.js.map",
-    "823.17fbb31e.chunk.css.map": "/static/css/823.17fbb31e.chunk.css.map",
-    "823.273bdadc.chunk.js.map": "/static/js/823.273bdadc.chunk.js.map",
-    "310.f61c21c6.chunk.css.map": "/static/css/310.f61c21c6.chunk.css.map",
-    "310.fd39d33e.chunk.js.map": "/static/js/310.fd39d33e.chunk.js.map",
-    "295.d67f6e72.chunk.js.map": "/static/js/295.d67f6e72.chunk.js.map"
+    "main.css": "/bits-orchestra/static/css/main.40fe1bfe.css",
+    "main.js": "/bits-orchestra/static/js/main.e25b9baf.js",
+    "static/css/823.17fbb31e.chunk.css": "/bits-orchestra/static/css/823.17fbb31e.chunk.css",
+    "static/js/823.273bdadc.chunk.js": "/bits-orchestra/static/js/823.273bdadc.chunk.js",
+    "static/css/310.f61c21c6.chunk.css": "/bits-orchestra/static/css/310.f61c21c6.chunk.css",
+    "static/js/310.fd39d33e.chunk.js": "/bits-orchestra/static/js/310.fd39d33e.chunk.js",
+    "static/js/295.d67f6e72.chunk.js": "/bits-orchestra/static/js/295.d67f6e72.chunk.js",
+    "index.html": "/bits-orchestra/index.html",
+    "main.40fe1bfe.css.map": "/bits-orchestra/static/css/main.40fe1bfe.css.map",
+    "main.e25b9baf.js.map": "/bits-orchestra/static/js/main.e25b9baf.js.map",
+    "823.17fbb31e.chunk.css.map": "/bits-orchestra/static/css/823.17fbb31e.chunk.css.map",
+    "823.273bdadc.chunk.js.map": "/bits-orchestra/static/js/823.273bdadc.chunk.js.map",
+    "310.f61c21c6.chunk.css.map": "/bits-orchestra/static/css/310.f61c21c6.chunk.css.map",
+    "310.fd39d33e.chunk.js.map": "/bits-orchestra/static/js/310.fd39d33e.chunk.js.map",
+    "295.d67f6e72.chunk.js.map": "/bits-orchestra/static/js/295.d67f6e72.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.40fe1bfe.css",
-    "static/js/main.e7036bf7.js"
+    "static/js/main.e25b9baf.js"
   ]
 }
