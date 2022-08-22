@@ -1,41 +1,39 @@
-import { Component } from 'react';
-import { ToastList } from './Toaster.styled';
+import { useContext } from 'react';
+import { ToasterContext } from 'components/App';
 import Toast from './Toast/Toast';
+import styles from './Toaster.module.scss';
 
-class Toaster extends Component {
-    static defaultProps = {
-        delay: 3000,
-    }
-    bakeToasts = () => {
-        const { toastList, delay } = this.props;
+const defaultDelay = 5000;
+
+const Toaster = ({
+    delay = defaultDelay,
+}) => {
+    const { toasts, removeToast } = useContext(ToasterContext);
+
+    const bakeToasts = () => {
         let step = 0;
 
-        return toastList.map(({ id, message, type }) => {
+        return toasts.map(toast => {
             step += delay;
 
             return (
-                <li key={id}>
+                <li key={toast.id}>
                     <Toast
-                        id={id}
-                        type={type}
-                        message={message}
+                        {...toast}
                         delay={step}
+                        removeToast={() => removeToast(toast.id)}
                     />
                 </li>
             )
         });
     }
-    render() {
-        const { toastList } = this.props;
-        const length = toastList.length;
-
-        return (
-            length && <ToastList>
-                        {this.bakeToasts()}
-                    </ToastList>
-        );
-    }
+    return (
+        toasts.length && <ul className={ styles.toaster }>
+                            { bakeToasts() }
+                        </ul>
+    );
 }
+
 
 
 export default Toaster;

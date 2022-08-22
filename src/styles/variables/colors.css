@@ -17,17 +17,10 @@
     --clr-brand-100: #8ec3d6;
     --clr-brand-200: #30b2e1;
 
-    /* dialog pallete*/
-    --clr-sent-message: #3c4154;
-    --clr-recieved-message: #e0e0e0;
-    --clr-unread-bg-100: #a19f9f;
-    --clr-unread-bg-200: #e05d5d;
-    --clr-unread-text: #ffffff;
-
     /* online status pallete*/
-    --clr-online: #96c599;
-    --clr-offline: #FF3131;
-    --clr-absent: #FFC300;
+    --clr-success: #96c599;
+    --clr-error: #FF3131;
+    --clr-warn: #FFC300;
 
     /* border pallete */
     --clr-border-400: #e3e4e5;

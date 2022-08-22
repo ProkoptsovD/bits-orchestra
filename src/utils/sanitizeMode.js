@@ -7,6 +7,7 @@ export const sanitaizeMode = (str) => {
 
     const matched = str.match(regexp).join``.split``;
     const truncatedPreDash = matched.slice(1);
+    const lastIndexOfDash = matched.lastIndexOf('/');
     
-    return truncatedPreDash.slice(0, truncatedPreDash.length - 1).join``;
+    return truncatedPreDash.slice(0, lastIndexOfDash - 1).join``;
 }

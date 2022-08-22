@@ -1,11 +1,11 @@
-export const generateISBN = (length = 13, max = 9) => {
-    let ISBN = '';
+export const generateId = (length = 5, max = 9) => {
+    let id = '';
 
     for(let i = 0; i < length; i += 1) {
-        ISBN += getRandomNumber(max);
+        id += getRandomNumber(max);
     }
 
-    return +ISBN;
+    return +id;
 };
 
 function getRandomNumber(max) {

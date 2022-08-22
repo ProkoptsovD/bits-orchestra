@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './Toast.module.scss';
 
 const messages = {
@@ -7,36 +7,32 @@ const messages = {
     warn: (text) => text
 }
 
-const Toast = ({ success, error, warnText, removeToast, delay, id }) => {
+const Toast = ({ success, error, warnText, removeToast, delay }) => {
+    const [ timoutId, setTimeoutId ] = useState(null);
+    const isFirstRender = useRef(true);
+
     const message = success
         ? messages.success : error 
         ? messages.error : messages.warn(warnText);
     
-    let timoutId = null;
+    const bgStyle = success
+    ? styles.success : error 
+    ? styles.error : styles.warn;
 
     useEffect(() => {
-        timoutId = setTimeout(() => removeToast(id), delay);
+        if(isFirstRender.current) {
+            setTimeoutId(setTimeout(() => removeToast(), delay));
+            isFirstRender.current = false;
+        }
 
         return () => clearTimeout(timoutId);
 
-    }, [id, delay, removeToast, timoutId])
+    }, [delay, removeToast, timoutId])
 
-    // componentDidMount() {
-    //     const { remove, delay, id } = this.props;
-    //     this.timoutId = setTimeout(() => remove(id), delay);
-    // }
-    // handleCloseToastClick = () => {
-    //     const { remove, id } = this.props;
-        
-    //     clearTimeout(this.timoutId);
-    //     remove(id);
-    // }
     return (
         <div
-            className={ styles.toast }
-            onClick={() => {
-
-            }}
+            className={ styles.toast + ' ' + bgStyle }
+            onClick={() => removeToast()}
         >
             <svg version="1.1" id="Layer_1" x="0px" y="0px" width="128px" height="128px" viewBox="0 0 128 128" enableBackground="new 0 0 128 128">
                 <g>
