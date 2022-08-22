@@ -1,6 +1,11 @@
+import { ToasterContext } from "components/App";
 import NavigateButton from "components/common/NavigateButton";
 import TextButton from "components/common/TextButton";
+import { BooksContext } from "components/Dashboard/Dashboard";
 import { ROUTES } from "constants";
+import { useContext } from "react";
+import { booksApi } from "services/booksApi";
+import { prepareToast } from "utils/prepareToast";
 import styles from './BookShelfTable.module.scss';
 
 const BookShelfTable = ({
@@ -8,8 +13,17 @@ const BookShelfTable = ({
     columnNames,
     tableStyles = '',
 }) => {
+    const setShouldRefetch = useContext(BooksContext);
+    console.log(setShouldRefetch);
+    const { createToast } = useContext(ToasterContext);
     // styles
     const tableCss = `${styles.table} ${tableStyles}`;
+    const handleDeleteBtnClicked = (bookId) => {
+        console.log(bookId);
+        booksApi.deleteBook(bookId)
+            .then(() => setShouldRefetch(true))
+            .catch(() => createToast(prepareToast('error')));
+    }
 
     return (
         <table className={ tableCss }>
@@ -34,7 +48,7 @@ const BookShelfTable = ({
                         <td
                             className={ styles.cat_td }
                         >
-                            { category.join(', ') }
+                            { category ?? category?.join(', ') }
                         </td>
                         <td
                             className={ styles.ibsn }
@@ -46,7 +60,7 @@ const BookShelfTable = ({
                                 text="Edit"
                                 to={ `/${ROUTES.EDIT_BOOK}/${id}` }
                             />
-                            <TextButton text="Delete" />
+                            <TextButton text="Delete" onClick={() => handleDeleteBtnClicked(id) }/>
                         </td>
                     </tr>
                 ))}

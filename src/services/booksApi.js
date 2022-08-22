@@ -77,7 +77,7 @@ const updateBook = async (bookId, dataToUpdate) => {
 }
 const deleteBook = async (bookId) => {
     try {
-        const response = await fetch(`${booksUrl} ${bookId}`, getHeaders('DELETE'));
+        const response = await fetch(`${booksUrl}/${bookId}`, getHeaders('DELETE'));
         
         if(response.ok) {
             const parsedResponse = await response.json();

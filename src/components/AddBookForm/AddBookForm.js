@@ -19,7 +19,6 @@ const AddBookForm = ({ editBook, book, ...restProps }) => {
     const [ ISBN, setISBN] = useState('');
     const [ options, setOptions] = useState(GENRES);
     const [ shouldRedirect, setShouldRedirect ] = useState(false);
-    const [ timoutId, setTimoutId ] = useState(0);
 
     const { clearAllToasts } = useContext(ToasterContext);
     const navigate = useNavigate();
@@ -27,8 +26,8 @@ const AddBookForm = ({ editBook, book, ...restProps }) => {
     const { createToast } = useContext(ToasterContext);
 
     useEffect(() => {
-        if(editBook && book) {
-            const { id, title, author, category, ISBN } = book;
+        if(editBook && book && !shouldRedirect) {
+            const { id, title, author, category: [category], ISBN } = book;
             
             setId(id);
             setTitle(title);
@@ -36,16 +35,19 @@ const AddBookForm = ({ editBook, book, ...restProps }) => {
             setCategory(category?.[0]);
             setISBN(ISBN);
             setOptions([...category, ...GENRES]);
+            return;
         }
 
         if(shouldRedirect) {
             clearAllToasts();
             navigate(ROUTES.HOME);
+            setShouldRedirect(false);
+            return;
         }
 
-        return () => clearTimeout(timoutId);
+        return () => clearAllToasts();
 
-    }, [editBook, book, shouldRedirect, navigate, timoutId, clearAllToasts]);
+    }, [editBook, book, shouldRedirect, navigate, clearAllToasts]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -73,7 +75,7 @@ const AddBookForm = ({ editBook, book, ...restProps }) => {
         setAuthor('');
         setISBN('');
         
-        setTimoutId(setTimeout(() => setShouldRedirect(true), 2000));
+        setShouldRedirect(true);
     }
     function handleError() {
         createToast(prepareToast('error'));
