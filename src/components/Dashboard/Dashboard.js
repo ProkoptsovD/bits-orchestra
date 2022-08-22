@@ -4,19 +4,24 @@ import ScrollContainer from "components/common/ScrollContainer";
 import Section from "components/common/Section";
 import styles from './Dashboard.module.scss';
 import { ROUTES } from "constants";
-
-const someBook = [{	
-        id: 1,
-        title: "Nausea",
-        author: "Jean-Paul Sartre",
-        category: ["psychology", "philosophy"],
-        ISBN: '0811201880'
-	},
-]
+import { useContext, useEffect, useState } from "react";
+import { booksApi } from "services/booksApi";
+import { ToasterContext } from "components/App";
+import { prepareToast } from "utils/prepareToast";
 
 const columns = ['Book title', 'Author name', 'Category', 'ISBN', 'Actions'];
 
 const Dashboard = () => {
+    const [ books, setBooks] = useState([]);
+    const { createToast } = useContext(ToasterContext);
+
+    useEffect(() => {
+        booksApi.fetchAllBooks()
+            .then((books) => setBooks(books))
+            .catch(() => createToast(prepareToast('error')))
+
+    }, [createToast]);
+
     return (
         <Section sectionStyles={ styles.section }>
             <NavigateButton
@@ -25,7 +30,7 @@ const Dashboard = () => {
                 className={ styles.add_book }
             />
             <ScrollContainer>
-                <BookShelfTable books={ someBook } columnNames={ columns }/>
+                <BookShelfTable books={ books } columnNames={ columns }/>
             </ScrollContainer>
         </Section>
     )

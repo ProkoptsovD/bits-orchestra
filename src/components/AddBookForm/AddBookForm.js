@@ -1,18 +1,30 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { GENRES } from "constants";
 import { booksApi } from "services/booksApi";
 import InputWithLabel from "components/common/InputWithLabel";
 import Select from "components/common/Select";
 import TextButton from "components/common/TextButton";
 import styles from './AddBookForm.module.scss';
+import { ToasterContext } from "components/App";
+import { prepareToast } from "utils/prepareToast";
+import { validateISBN } from "utils/validateISBN";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "constants";
 
 const AddBookForm = ({ editBook, book, ...restProps }) => {
     const [ id, setId ] = useState();
     const [ title, setTitle ] = useState('');
     const [ author, setAuthor ] = useState('');
-    const [ category, setCategory ] = useState('');
+    const [ category, setCategory ] = useState(GENRES[0]);
     const [ ISBN, setISBN] = useState('');
     const [ options, setOptions] = useState(GENRES);
+    const [ shouldRedirect, setShouldRedirect ] = useState(false);
+    const [ timoutId, setTimoutId ] = useState(0);
+
+    const { clearAllToasts } = useContext(ToasterContext);
+    const navigate = useNavigate();
+
+    const { createToast } = useContext(ToasterContext);
 
     useEffect(() => {
         if(editBook && book) {
@@ -26,21 +38,45 @@ const AddBookForm = ({ editBook, book, ...restProps }) => {
             setOptions([...category, ...GENRES]);
         }
 
-    }, [editBook, book]);
+        if(shouldRedirect) {
+            clearAllToasts();
+            navigate(ROUTES.HOME);
+        }
+
+        return () => clearTimeout(timoutId);
+
+    }, [editBook, book, shouldRedirect, navigate, timoutId, clearAllToasts]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const book = { title, author, category, ISBN };
+        const isAllFilledIn = title && author && category && ISBN;
+        const isISBNofNeededLenght = validateISBN(+ISBN);
+
+        if(!isAllFilledIn) {
+            createToast(prepareToast(null, 'All fields must be filled in'));
+            return;
+        }
+        if(!isISBNofNeededLenght) {
+            createToast(prepareToast(null, `ISBN length is ${ISBN.toString().length}. Needed 13 digits`));
+            return;
+        }
+
+        const book = { title, author, category, ISBN: +ISBN };
         editBook
-            ? booksApi.updateBook(id, book).then(console.log).catch()
-            : booksApi.createBook(book).then(console.log).catch()
+            ? booksApi.updateBook(id, book).then(handleSuccess).catch(handleError)
+            : booksApi.createBook(book).then(handleSuccess).catch(handleError);
     }
     function handleSuccess() {
+        createToast(prepareToast('success'));
+        setTitle('');
+        setAuthor('');
+        setISBN('');
         
+        setTimoutId(setTimeout(() => setShouldRedirect(true), 2000));
     }
     function handleError() {
-
+        createToast(prepareToast('error'));
     }
 
     return (
@@ -82,6 +118,7 @@ const AddBookForm = ({ editBook, book, ...restProps }) => {
                 labelStyles={ styles.label }
                 onChange={(e) => setISBN(e.target.value)}
                 value={ ISBN }
+                
             />
             <TextButton
                 type="submit"

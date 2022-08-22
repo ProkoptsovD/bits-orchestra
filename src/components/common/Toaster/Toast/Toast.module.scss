@@ -4,7 +4,7 @@
     justify-content: space-between;
 
     width: 100%;
-    padding: 16px;
+    padding: 10px;
 
     font-size: .8em;
     line-height: 1.2;
@@ -12,6 +12,16 @@
     background-color: var(--clr-bg-300);
     color: var(--clr-text-100);
     border-radius: 10px;
+
+    &.success {
+        background-color: var(--clr-success);
+    }
+    &.error {
+        background-color: var(--clr-error);
+    }
+    &.warn {
+        background-color: var(--clr-warn);
+    }
 
     & > p {
         margin: 0 15px;
@@ -26,7 +36,8 @@
         height: 32px;
     }
     & > svg:last-of-type {
-        fill: #8B0000;
+        fill: var(--clr-required);
+
         &:hover {
             cursor: pointer;
         }
