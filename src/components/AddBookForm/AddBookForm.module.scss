@@ -1,4 +1,7 @@
 .form {
+    max-width: 450px;
+    margin: 0 auto;
+
     & > :not(:last-child) {
         margin-bottom: 20px;
     }

@@ -6,7 +6,7 @@ import styles from './Dashboard.module.scss';
 import { ROUTES } from "constants";
 
 const someBook = [{	
-        bookId: 1,
+        id: 1,
         title: "Nausea",
         author: "Jean-Paul Sartre",
         category: ["psychology", "philosophy"],

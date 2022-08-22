@@ -8,7 +8,7 @@ const getHeaders = (method, bodyData) => {
         method: method,
         headers: {
             Accept: 'application/json',
-            'Content-type': 'application/json',
+            'Content-Type': 'application/json',
         },
         ...body
     }
@@ -29,7 +29,23 @@ const fetchAllBooks = async () => {
         return error;
     }
 }
+const fetchBookById = async (bookId) => {
+    try {
+        const response = await fetch(`${booksUrl}/${bookId}`, getHeaders('GET'));
+        
+        if(response.ok) {
+            const parsedResponse = await response.json();
+            return parsedResponse
+        }
+        
+        throw new Error('Server error! Try again');
+    } catch (error) {
+        console.log(error);
+        return error;
+    }
+}
 const createBook = async (book) => {
+    console.log(book);
     try {
         const response = await fetch(booksUrl, getHeaders('POST', book));
         
@@ -46,7 +62,7 @@ const createBook = async (book) => {
 }
 const updateBook = async (bookId, dataToUpdate) => {
     try {
-        const response = await fetch(`${booksUrl}/${bookId}`, getHeaders('PATCH', dataToUpdate));
+        const response = await fetch(`${booksUrl}/${bookId}`, getHeaders('PUT', dataToUpdate));
         
         if(response.ok) {
             const parsedResponse = await response.json();
@@ -77,6 +93,7 @@ const deleteBook = async (bookId) => {
 
 export const booksApi = {
     fetchAllBooks,
+    fetchBookById,
     createBook,
     updateBook,
     deleteBook
