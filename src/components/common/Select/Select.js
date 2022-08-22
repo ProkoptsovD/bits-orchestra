@@ -1,3 +1,4 @@
+import { generateId } from 'utils/generateId';
 import styles from './Select.module.scss';
 
 const Select = ({
@@ -33,7 +34,7 @@ const Select = ({
                 {
                     options && options.map(option => (
                         <option
-                            key={ option }
+                            key={ generateId() }
                             value={ option }
                         >
                             {option}

@@ -19,15 +19,18 @@ const AddBookForm = ({ editBook, book, ...restProps }) => {
     const [ ISBN, setISBN] = useState('');
     const [ options, setOptions] = useState(GENRES);
     const [ shouldRedirect, setShouldRedirect ] = useState(false);
-
+    const [ isSubmited ] = useState(false); 
     const { clearAllToasts } = useContext(ToasterContext);
     const navigate = useNavigate();
+
 
     const { createToast } = useContext(ToasterContext);
 
     useEffect(() => {
-        if(editBook && book && !shouldRedirect) {
-            const { id, title, author, category: [category], ISBN } = book;
+        let timeoutId = null;
+
+        if(editBook && book && !shouldRedirect && isSubmited) {
+            const { id, title, author, category, ISBN } = book;
             
             setId(id);
             setTitle(title);
@@ -39,15 +42,18 @@ const AddBookForm = ({ editBook, book, ...restProps }) => {
         }
 
         if(shouldRedirect) {
-            clearAllToasts();
-            navigate(ROUTES.HOME);
-            setShouldRedirect(false);
+            timeoutId = setTimeout(() => {
+                clearAllToasts();
+                navigate(ROUTES.HOME);
+            }, 1000);
             return;
         }
 
-        return () => clearAllToasts();
+        return () => {
+            clearTimeout(timeoutId);
+        };
 
-    }, [editBook, book, shouldRedirect, navigate, clearAllToasts]);
+    }, [editBook, book, navigate, clearAllToasts, shouldRedirect, isSubmited]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -64,7 +70,7 @@ const AddBookForm = ({ editBook, book, ...restProps }) => {
             return;
         }
 
-        const book = { title, author, category, ISBN: +ISBN };
+        const book = { title, author, category: [category], ISBN: +ISBN };
         editBook
             ? booksApi.updateBook(id, book).then(handleSuccess).catch(handleError)
             : booksApi.createBook(book).then(handleSuccess).catch(handleError);

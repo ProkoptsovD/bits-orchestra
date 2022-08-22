@@ -3,7 +3,7 @@ import { ToasterContext } from 'components/App';
 import Toast from './Toast/Toast';
 import styles from './Toaster.module.scss';
 
-const defaultDelay = 5000;
+const defaultDelay = 4000;
 
 const Toaster = ({
     delay = defaultDelay,
@@ -28,9 +28,10 @@ const Toaster = ({
         });
     }
     return (
-        toasts.length && <ul className={ styles.toaster }>
+        toasts.length ? <ul className={ styles.toaster }>
                             { bakeToasts() }
                         </ul>
+                    : null
     );
 }
 

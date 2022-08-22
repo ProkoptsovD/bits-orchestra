@@ -62,13 +62,13 @@
       "ISBN": 6790007525546
     },
     {
-      "id": 7,
       "title": "Gone with the Wind",
       "author": "Margaret Mitchell",
       "category": [
         "historical fiction"
       ],
-      "ISBN": 9780446365383
+      "ISBN": 9780446365383,
+      "id": 7
     }
   ]
 }

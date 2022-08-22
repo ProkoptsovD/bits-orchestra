@@ -14,14 +14,15 @@ const BookShelfTable = ({
     tableStyles = '',
 }) => {
     const setShouldRefetch = useContext(BooksContext);
-    console.log(setShouldRefetch);
     const { createToast } = useContext(ToasterContext);
     // styles
     const tableCss = `${styles.table} ${tableStyles}`;
     const handleDeleteBtnClicked = (bookId) => {
-        console.log(bookId);
         booksApi.deleteBook(bookId)
-            .then(() => setShouldRefetch(true))
+            .then(() => {
+                createToast(prepareToast('success'));
+                setShouldRefetch(true);
+            })
             .catch(() => createToast(prepareToast('error')));
     }
 
@@ -48,7 +49,7 @@ const BookShelfTable = ({
                         <td
                             className={ styles.cat_td }
                         >
-                            { category ?? category?.join(', ') }
+                            { category ? category?.join(', ') : '' }
                         </td>
                         <td
                             className={ styles.ibsn }
